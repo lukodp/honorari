@@ -1,0 +1,404 @@
+.app-header {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
+    color: #fff;
+    background: #103a68;
+}
+
+body:has(> .app-header) {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    padding-top: 0 !important;
+    color: #102b50;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f3f7fc;
+    background-image: var(--app-background-image);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+}
+
+body:has(> .app-header) * {
+    box-sizing: border-box;
+}
+body:has(> .app-header) > main {
+    flex: 1 0 auto;
+}
+.app-main {
+    width: min(1500px, calc(100% - 48px));
+    margin: 34px auto 0;
+}
+
+.app-main > .container,
+.app-main > .page-container,
+.app-main > .payment-layout,
+.app-main > .view-style-2,
+.app-main > .page-context {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 20px;
+}
+
+.app-main > .page-container,
+.app-main > .page-context {
+    padding: 0;
+}
+
+.app-main .app-card {
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #d8e4f2;
+    border-radius: 10px;
+    box-shadow: 0 5px 16px rgba(25, 59, 98, 0.06);
+}
+
+.app-main .app-card--flush {
+    padding: 0;
+}
+
+.app-main form input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+.app-main form select,
+.app-main form textarea {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    color: #102b50;
+    font: inherit;
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+.app-main form input:not([type="hidden"]):not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]):focus-visible,
+.app-main form select:focus-visible,
+.app-main form textarea:focus-visible {
+    border-color: #356da8;
+    outline: 2px solid #8bb6e8;
+    outline-offset: 1px;
+}
+
+.app-main .app-button {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.app-main .app-button:focus-visible {
+    outline: 2px solid #3974b6;
+    outline-offset: 2px;
+}
+
+.app-main table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.app-main th,
+.app-main td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.app-main th {
+    color: #fff;
+    font-weight: 600;
+    background: #123f70;
+}
+
+.app-main [role="alert"],
+.app-main [role="status"] {
+    margin: 0 0 18px;
+    padding: 14px 16px;
+    border-radius: 8px;
+}
+
+body:has(> .app-header) > .app-header + :not(.app-footer) {
+    flex: 1 0 auto;
+}
+
+body:has(> .app-header) > footer {
+    display: flex;
+    min-height: 58px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 20px;
+    color: #f3f7fc;
+    text-align: center;
+    background-color: #082749;
+}
+
+.app-header-main {
+    min-height: 198px;
+    background-color: #103a68;
+    background-image: var(--app-header-background-image);
+    background-size: cover;
+    background-position: center 48%;
+}
+
+.app-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    max-width: 1440px;
+    min-height: 198px;
+    margin: 0 auto;
+    padding: 28px 36px;
+}
+
+.app-brand {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.app-brand-logo {
+    display: block;
+    width: 88px;
+    height: 88px;
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+
+.app-brand-copy {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-brand-title {
+    margin: 0 0 8px;
+    font-size: clamp(25px, 3vw, 42px);
+    font-weight: 700;
+    line-height: 1.12;
+}
+
+.app-brand-subtitle {
+    color: #e3edf9;
+    font-size: 17px;
+    line-height: 1.45;
+}
+
+.app-organization-card,
+.app-organization-notice {
+    width: min(420px, 38%);
+    flex: 0 0 auto;
+    padding: 14px 18px;
+    color: #102b50;
+    text-align: right;
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 9px;
+    box-shadow: 0 8px 24px rgba(5, 28, 54, 0.18);
+}
+
+.app-organization-notice {
+    color: #8a3412;
+    background: #fff7ed;
+    border-color: #fed7aa;
+}
+
+.app-organization-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.app-organization-name {
+    display: block;
+    font-size: 16px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+.app-organization-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 10px 14px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    background: #123f70;
+    border-radius: 6px;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.app-organization-action:hover {
+    color: #fff;
+    background: #1b5792;
+    transform: translateY(-1px);
+}
+
+.app-navigation {
+    background: rgba(8, 39, 72, 0.96);
+}
+
+.app-navigation-links {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 10px 24px;
+}
+
+.app-navigation-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 9px 15px;
+    color: #e3edf9;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.app-navigation-link:hover,
+.app-navigation-link:focus-visible {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+.app-navigation-link.is-active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+@media (max-width: 900px) {
+    .app-header-content {
+        gap: 20px;
+        padding: 24px;
+    }
+
+    .app-brand {
+        gap: 16px;
+    }
+
+    .app-brand-logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    .app-organization-card,
+    .app-organization-notice {
+        width: 42%;
+    }
+
+    .app-navigation-links {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 620px) {
+    .app-main {
+        width: calc(100% - 36px);
+        margin-top: 28px;
+    }
+
+    .app-main .app-card {
+        padding: 20px;
+    }
+
+    .app-main .app-card--flush {
+        padding: 0;
+    }
+
+    .app-header-content {
+        min-height: 0;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 25px 20px;
+    }
+
+    .app-brand {
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .app-brand-logo {
+        width: 58px;
+        height: 58px;
+    }
+
+    .app-brand-subtitle {
+        font-size: 14px;
+    }
+
+    .app-organization-card,
+    .app-organization-notice {
+        width: 100%;
+    }
+
+    .app-navigation-links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+        padding: 10px 14px;
+    }
+
+    .app-navigation-link {
+        justify-content: flex-start;
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+}
+
+@media print {
+    .app-header {
+        display: none !important;
+    }
+
+    .app-footer {
+        display: none !important;
+    }
+
+    body:has(> .app-header) {
+        display: block;
+        min-height: 0;
+        background-image: none;
+    }
+
+    body:has(> .app-header) > main {
+        background-image: none;
+    }
+}
+
+.app-main .app-page-title {
+    margin: 0 0 8px;
+    color: #102b50;
+    font-size: clamp(27px, 3vw, 36px);
+    line-height: 1.15;
+}

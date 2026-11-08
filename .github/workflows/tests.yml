@@ -1,0 +1,75 @@
+name: Provjere
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      APP_ENV: testing
+      APP_DEBUG: 'false'
+      APP_MAINTENANCE_DRIVER: file
+      DB_CONNECTION: sqlite
+      DB_DATABASE: ':memory:'
+      DB_URL: ''
+      SESSION_DRIVER: array
+      CACHE_STORE: array
+      QUEUE_CONNECTION: sync
+      MAIL_MAILER: array
+      BROADCAST_CONNECTION: 'null'
+      BCRYPT_ROUNDS: '4'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: bcmath, curl, dom, fileinfo, gd, mbstring, pdo_sqlite, sqlite3, xml, xmlwriter, zip
+          coverage: none
+          tools: composer:v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+          cache: npm
+      - name: Provjeri Composer metapodatke
+        run: composer validate --strict
+      - name: Instaliraj zaključane PHP ovisnosti
+        run: composer install --prefer-dist --no-interaction --no-progress
+      - name: Generiraj privremeni testni ključ
+        run: php -r 'file_put_contents(getenv("GITHUB_ENV"), "APP_KEY=base64:".base64_encode(random_bytes(32)).PHP_EOL, FILE_APPEND);'
+      - name: Instaliraj frontend ovisnosti i izgradi resurse
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+      - name: Potvrdi memorijsku bazu i odsutnost konfiguracijskog cachea
+        run: |
+          php <<'PHP'
+          <?php
+          require 'vendor/autoload.php';
+          $app = require 'bootstrap/app.php';
+          $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+          $database = DB::select('PRAGMA database_list')[0];
+          if (! $app->environment('testing')
+              || config('database.default') !== 'sqlite'
+              || config('database.connections.sqlite.database') !== ':memory:'
+              || $database->file !== ''
+              || $app->configurationIsCached()
+              || config('session.driver') !== 'array'
+              || config('cache.default') !== 'array'
+              || config('queue.default') !== 'sync'
+              || config('mail.default') !== 'array') {
+              exit(1);
+          }
+          PHP
+      - name: PHPUnit
+        run: php vendor/bin/phpunit --colors=always
+
+      - name: Provjeri sigurnost zaključanih PHP ovisnosti
+        run: composer audit --locked --abandoned=report

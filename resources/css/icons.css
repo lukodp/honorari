@@ -1,0 +1,65 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+.bi {
+    display: inline-block;
+    vertical-align: -0.125em;
+}
+
+.icon-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+}
+
+.icon-action .bi {
+    font-size: 1.05em;
+}
+
+.menu-item-icon {
+    font-size: 2.4rem;
+    line-height: 1;
+}
+
+.menu-item-icon--blue {
+    color: #347cf6;
+}
+
+.menu-item-icon--green {
+    color: #19a968;
+}
+
+.menu-item-icon--orange {
+    color: #f18400;
+}
+
+.menu-item-icon--violet {
+    color: #8250df;
+}
+
+.validation-summary,
+.validation-error,
+.notice-icon,
+.success-icon {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 0.45em;
+}
+
+.validation-summary .bi,
+.validation-error .bi,
+.notice-icon .bi,
+.success-icon .bi {
+    flex: 0 0 auto;
+    margin-top: 0.12em;
+}
+
+.action-delete,
+.action-delete .bi {
+    color: #b42318;
+}
+
+@media print {
+    .bi {
+        print-color-adjust: exact;
+    }
+}
